@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import Navbar from "./Components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment, multiply } from "./Counter/counterSlice";
+import { decrement, increment, multiply, reset } from "./Counter/counterSlice";
 
 function App() {
   const count = useSelector((state) => state.counter.value);
@@ -17,6 +17,7 @@ function App() {
       <br />
       <br />
       <button onClick={() => dispatch(multiply())}>*</button>
+      <button onClick={() => dispatch(reset())}>Reset</button>
     </>
   );
 }
