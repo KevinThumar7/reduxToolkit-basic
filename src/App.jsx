@@ -1,12 +1,22 @@
-// import { useState } from 'react'
+import { useState } from "react";
 import Navbar from "./Components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment, multiply, reset } from "./Counter/counterSlice";
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  multiply,
+  reset,
+} from "./Counter/counterSlice";
 
 function App() {
   const count = useSelector((state) => state.counter.value);
-
+  const [num, setNum] = useState(0);
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(incrementByAmount(Number(num)));
+  };
 
   return (
     <>
@@ -18,6 +28,14 @@ function App() {
       <br />
       <button onClick={() => dispatch(multiply())}>*</button>
       <button onClick={() => dispatch(reset())}>Reset</button>
+      <br />
+      <input
+        type="text"
+        placeholder="type a number"
+        value={num}
+        onChange={(e) => setNum(e.target.value)}
+      />
+      <button onClick={handleClick}>Increase</button>
     </>
   );
 }
